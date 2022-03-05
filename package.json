@@ -1,0 +1,19 @@
+{
+  "name": "aruba-iot-server",
+  "version": "1.0.0",
+  "description": "Aruba websocket server for iot",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhaturaphat/Aruba-iot-Server.git"
+  },
+  "author": "จตุรภัทร ศิริบูรณ์",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhaturaphat/Aruba-iot-Server/issues"
+  },
+  "homepage": "https://github.com/jhaturaphat/Aruba-iot-Server#readme"
+}
