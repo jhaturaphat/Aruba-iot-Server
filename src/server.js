@@ -12,8 +12,8 @@ wss.on("connection", (ws)=>{
     ws.on('message', (message)=>{
         // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
         let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
-        
-        let obj = JSON.parse(JSON.stringify(telemetryReport))
+        let myobj = JSON.stringify(telemetryReport);
+        let obj = JSON.parse(myobj)
 
         console.log(obj);
 
@@ -21,6 +21,7 @@ wss.on("connection", (ws)=>{
             return console.log("Aruba Websocket Established");
         
             console.log(obj["reported"]);
+            console.log(obj["reporter"]["name"]);
         
 
     })
