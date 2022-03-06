@@ -17,6 +17,12 @@ wss.on("connection", (ws)=>{
 
         console.log(obj);
 
+        if(obj["reported"] == null)
+            return console.log("Aruba Websocket Established");
+        
+            console.log(obj["reported"]);
+        
+
     })
     ws.on('close', function close() {
         // จะทำงานเมื่อปิด Connection ในตัวอย่างคือ ปิด Browser
