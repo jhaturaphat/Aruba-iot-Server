@@ -14,14 +14,18 @@ wss.on("connection", (ws)=>{
         let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
         
         let obj = JSON.parse(JSON.stringify(telemetryReport))
-
+        console.log("Befor+++++++++++");
         console.log(obj);
+        console.log("EndBefor+++++++++++");
 
         if(obj["reported"] == null){
              console.log("Aruba Websocket Established");
         }else{
             console.log(obj["reported"]);
             console.log(obj["reporter"]["name"]);
+            console.log("If=================");
+            console.log(obj);
+            console.log("EnIf=================");
         }
 
     })
