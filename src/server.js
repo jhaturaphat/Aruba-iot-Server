@@ -1,7 +1,11 @@
 require('dotenv').config();
 const WebSocket = require('ws')
 const aruba_tmp_proto = require("./aruba_iot_proto").aruba_telemetry;
+const databases = require("./config/Databases")
 
+const db = databases.Databases
+
+const _db = new db();
 
 const wss = new WebSocket.Server({
     port: process.env.PORT,
@@ -10,25 +14,37 @@ const wss = new WebSocket.Server({
 // สร้าง websocket server 
 wss.on("connection", (ws)=>{
     ws.on('message', (message)=>{
-        // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
-        let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
-        
-        let obj = JSON.parse(JSON.stringify(telemetryReport))
-        console.log("Befor+++++++++++");
-        console.log(obj);
-        console.log("EndBefor+++++++++++");
+        try {
+            // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
+            let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
+            let obj = JSON.parse(JSON.stringify(telemetryReport))
+            console.log("###Befor###");
+            console.log(obj);
+            console.log("###EndBefor###");           
+            
 
         if(!obj.hasOwnProperty("reported")){
+            
              console.log("Aruba Websocket Established");
         }else{
-            console.log("++++++TO++++++++++");
+
+            this.db.query("INSERT INTO ",[dbj])
+            console.log("++++++TO+++++");
             console.log(obj["reported"]); //
             console.log(obj["reporter"]["name"]); //ชื่อ Access point
-            console.log("+++++++END++++++++++")
+            console.log("+++++++END++++++")
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
         }
+
+    } catch (error) {
+        // console.log(error);   
+        
+        _db.query("INSERT INTO device_inventory (d_name, d_macaddress) VALUES (?,?)", ["my name","macaddress"]).then(()=>{
+
+       });     
+    }    
 
     })
     ws.on('close', function close() {
