@@ -15,14 +15,14 @@ wss.on("connection", (ws)=>{
         
         let obj = JSON.parse(JSON.stringify(telemetryReport))
 
-        // console.log(obj);
+        console.log(obj);
 
-        if(obj["reported"] == null)
-            return console.log("Aruba Websocket Established");
-        
+        if(obj["reported"] == null){
+             console.log("Aruba Websocket Established");
+        }else{
             console.log(obj["reported"]);
             console.log(obj["reporter"]["name"]);
-        
+        }
 
     })
     ws.on('close', function close() {
