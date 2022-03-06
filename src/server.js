@@ -18,12 +18,12 @@ wss.on("connection", (ws)=>{
         console.log(obj);
         console.log("EndBefor+++++++++++");
 
-        if(obj["reported"] == null){
+        if(!obj.hasOwnProperty("reported")){
              console.log("Aruba Websocket Established");
         }else{
             console.log("++++++TO++++++++++");
-            console.log(obj["reported"]);
-            console.log(obj["reporter"]["name"]);
+            console.log(obj["reported"]); //
+            console.log(obj["reporter"]["name"]); //ชื่อ Access point
             console.log("+++++++END++++++++++")
             console.log("If=================");
             console.log(obj);
