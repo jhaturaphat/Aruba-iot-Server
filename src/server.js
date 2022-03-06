@@ -15,7 +15,7 @@ wss.on("connection", (ws)=>{
         
         let obj = JSON.parse(JSON.stringify(telemetryReport))
         console.log("Befor+++++++++++");
-        console.log(obj.results);
+        console.log(obj);
         console.log("EndBefor+++++++++++");
 
         if(obj["reported"] == null){
@@ -24,7 +24,7 @@ wss.on("connection", (ws)=>{
             console.log(obj["reported"]);
             console.log(obj["reporter"]["name"]);
             console.log("If=================");
-            console.log(obj.results);
+            console.log(obj);
             console.log("EnIf=================");
         }
 
