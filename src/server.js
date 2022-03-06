@@ -12,8 +12,8 @@ wss.on("connection", (ws)=>{
     ws.on('message', (message)=>{
         // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
         let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
-        let myobj = JSON.stringify(telemetryReport);
-        let obj = JSON.parse(myobj)
+        
+        let obj = JSON.parse(JSON.stringify(telemetryReport))
 
         console.log(obj);
 
