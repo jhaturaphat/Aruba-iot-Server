@@ -15,7 +15,7 @@ wss.on("connection", (ws)=>{
         
         let obj = JSON.parse(JSON.stringify(telemetryReport))
 
-        console.log(obj);
+        // console.log(obj);
 
         if(obj["reported"] == null)
             return console.log("Aruba Websocket Established");
