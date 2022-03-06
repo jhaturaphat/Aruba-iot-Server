@@ -21,8 +21,10 @@ wss.on("connection", (ws)=>{
         if(obj["reported"] == null){
              console.log("Aruba Websocket Established");
         }else{
+            console.log("++++++TO++++++++++");
             console.log(obj["reported"]);
             console.log(obj["reporter"]["name"]);
+            console.log("+++++++END++++++++++")
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
