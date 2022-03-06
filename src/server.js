@@ -20,15 +20,11 @@ wss.on("connection", (ws)=>{
             let obj = JSON.parse(JSON.stringify(telemetryReport))
             console.log("###Befor###");
             console.log(obj);
-            console.log("###EndBefor###");           
-            
+            console.log("###EndBefor###");  
 
-        if(!obj.hasOwnProperty("reported")){
-            
+        if(!obj.hasOwnProperty("reported")){            
              console.log("Aruba Websocket Established");
         }else{
-
-            this.db.query("INSERT INTO ",[dbj])
             console.log("++++++TO+++++");
             console.log(obj["reported"]); //
             console.log(obj["reporter"]["name"]); //ชื่อ Access point
