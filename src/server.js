@@ -33,8 +33,7 @@ wss.on("connection", (ws)=>{
         
 
     } catch (error) {
-        // console.log(error);           
-        // db.query("INSERT INTO device_inventory (d_name, d_macaddress) VALUES (?,?)", ["my name","macaddress"]);
+        // console.log(error);                   
     }    
 
     })
