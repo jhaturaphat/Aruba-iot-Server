@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs')
 const WebSocket = require('ws')
 const aruba_tmp_proto = require("./aruba_iot_proto").aruba_telemetry;
 const Databases = require("./config/Databases").Databases
@@ -30,6 +31,14 @@ wss.on("connection", (ws)=>{
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
+            fs.writeFile(Date.now()+".json", obj, 'utf8', function (err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }
+             
+                console.log("JSON file has been saved.");
+            });
         
 
     } catch (error) {
