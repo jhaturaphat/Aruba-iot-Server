@@ -1,16 +1,24 @@
 require('dotenv').config
 const mysql = require('mysql')
-
 class Databases {
     constructor() {
-        this.connection = mysql.createPool({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASS,
-            database: process.env.DB_DATABASES,
-            charset: process.env.DB_CHARSET,
-            port:process.env.DB_PORT
-        })
+        
+            this.connection = mysql.createPool({
+                host: process.env.DB_HOST,
+                user: process.env.DB_USER,
+                password: process.env.DB_PASS,
+                database: process.env.DB_DATABASES,
+                charset: process.env.DB_CHARSET,
+                port:process.env.DB_PORT
+            })        
+        try {
+            this.connection.query("SELECT NOW()", (err, result)=>{
+                if(err) return console.log(err);
+                console.log("Connection OK.");
+            })
+        } catch (error) { 
+            throw new Error('database failed to connect');            
+        }
     }
 
     // Custom ฟังชั่นก์ Query ข้อมูลใหม่
@@ -24,4 +32,4 @@ class Databases {
     }
 }
 
-module.exports = {Databases}
+module.exports = {Databases}  

@@ -1,11 +1,9 @@
 require('dotenv').config();
 const WebSocket = require('ws')
 const aruba_tmp_proto = require("./aruba_iot_proto").aruba_telemetry;
-const databases = require("./config/Databases")
+const Databases = require("./config/Databases").Databases
 
-const db = databases.Databases
-
-const _db = new db();
+const db = new Databases()
 
 const wss = new WebSocket.Server({
     port: process.env.PORT,
@@ -22,9 +20,9 @@ wss.on("connection", (ws)=>{
             console.log(obj);
             console.log("###EndBefor###");  
 
-        if(!obj.hasOwnProperty("reported")){            
-             console.log("Aruba Websocket Established");
-        }else{
+        if(!obj.hasOwnProperty("reported")) 
+            return console.log("Aruba Websocket Established");
+        
             console.log("++++++TO+++++");
             console.log(obj["reported"]); //
             console.log(obj["reporter"]["name"]); //ชื่อ Access point
@@ -32,14 +30,11 @@ wss.on("connection", (ws)=>{
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
-        }
+        
 
     } catch (error) {
-        // console.log(error);   
-        
-        _db.query("INSERT INTO device_inventory (d_name, d_macaddress) VALUES (?,?)", ["my name","macaddress"]).then(()=>{
-
-       });     
+        // console.log(error);           
+        // db.query("INSERT INTO device_inventory (d_name, d_macaddress) VALUES (?,?)", ["my name","macaddress"]);
     }    
 
     })
