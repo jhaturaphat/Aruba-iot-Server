@@ -10,17 +10,17 @@ class Databases {
                 database: process.env.DB_DATABASES,
                 charset: process.env.DB_CHARSET,
                 port:process.env.DB_PORT
-            })        
+            })         
         try {
-            this.connection.query("SELECT NOW()", (errors, result)=>{
-                if(errors) return console.log(err);
-                if(result) return console.log("Connection OK. "+result);
+            this.connection.query("SELECT NOW() AS data", (errors, result)=>{
+                if(errors) return console.log(errors.sqlMessage);
+                if(result) return console.log("Connection OK. "+result[0].data);
                 console.log('database failed to connect');
 
             })
         } catch (error) { 
-            throw new Error('database failed to connect');            
-        }
+            console.log('database failed to connect');            
+        } 
     }
 
     // Custom ฟังชั่นก์ Query ข้อมูลใหม่
