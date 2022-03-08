@@ -14,7 +14,7 @@ class Databases {
         try {
             this.connection.query("SELECT NOW() AS data", (errors, result)=>{
                 if(errors) return console.log(errors.sqlMessage);
-                if(result) return console.log("Connection OK. "+result[0].data);
+                if(result) return console.log("Databases Connection OK. "+result[0].data);
                 console.log('database failed to connect');
 
             })
