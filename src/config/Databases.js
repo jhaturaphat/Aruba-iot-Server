@@ -12,9 +12,11 @@ class Databases {
                 port:process.env.DB_PORT
             })        
         try {
-            this.connection.query("SELECT NOW()", (err, result)=>{
-                if(err) return console.log(err);
-                console.log("Connection OK. "+result);
+            this.connection.query("SELECT NOW()", (errors, result)=>{
+                if(errors) return console.log(err);
+                if(result) return console.log("Connection OK. "+result);
+                console.log('database failed to connect');
+
             })
         } catch (error) { 
             throw new Error('database failed to connect');            
