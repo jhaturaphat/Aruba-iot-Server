@@ -31,7 +31,7 @@ wss.on("connection", (ws)=>{
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
-            fs.writeFile("./files/"+Date.now()+".json", obj, 'utf8', function (err) {
+            fs.writeFileSync("./files/"+Date.now()+".json", obj, 'utf8', function (err) {
                 if (err) {
                     console.log("An error occured while writing JSON Object to File.");
                     return console.log(err);
