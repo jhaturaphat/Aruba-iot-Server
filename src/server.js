@@ -16,7 +16,8 @@ wss.on("connection", (ws)=>{
         try {
             // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
             let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
-            let obj = JSON.parse(JSON.stringify(telemetryReport))
+            let json = JSON.stringify(telemetryReport)
+            let obj = JSON.parse(json)
             console.log("###Befor###");
             console.log(obj);
             console.log("###EndBefor###");  
@@ -31,7 +32,7 @@ wss.on("connection", (ws)=>{
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
-            fs.writeFileSync("./files/"+Date.now()+".json", obj, 'utf8', function (err) {
+            fs.writeFileSync("./files/"+Date.now()+".json", json, 'utf8', function (err) {
                 if (err) {
                     console.log("An error occured while writing JSON Object to File.");
                     return console.log(err);
