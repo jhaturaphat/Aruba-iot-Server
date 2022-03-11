@@ -47,14 +47,12 @@ wss.on("connection", (ws)=>{
             // รอรับข้อมูลจาก Aruba ที่ส่งมาแบบตลอดเวลา
             let telemetryReport = aruba_tmp_proto.Telemetry.decode(message)
             let json = JSON.stringify(telemetryReport)
+            
             let obj = JSON.parse(json)
-            const token = json.meta.access_token
-            console.log(token);
-            const verified = jwt.verify(token, jwtSecretKey);
-            if(!verified) return res.status(401).send(error);
-            console.log("###Befor###");
-            console.log(obj);
-            console.log("###EndBefor###");  
+            const token = obj['meta']['access_token']    //ดึงค่า Token ที่มาจาก Aruba        
+            // jwt.verify(token, process.env.SECRET_KEY, (err)=>{
+            //     if(err) return console.log("401 Unauthorized")
+            // });
 
         if(!obj.hasOwnProperty("reported")) 
             return console.log("Aruba Websocket Established");
@@ -66,14 +64,14 @@ wss.on("connection", (ws)=>{
             console.log("If=================");
             console.log(obj);
             console.log("EnIf=================");
-            fs.writeFileSync("./files/"+Date.now()+".json", json, 'utf8', function (err) {
-                if (err) {
-                    console.log("An error occured while writing JSON Object to File.");
-                    return console.log(err);
-                }
+            // fs.writeFileSync("./files/"+Date.now()+".json", json, 'utf8', function (err) {
+            //     if (err) {
+            //         console.log("An error occured while writing JSON Object to File.");
+            //         return console.log(err);
+            //     }
              
-                console.log("JSON file has been saved.");
-            });
+            //     console.log("JSON file has been saved.");
+            // });
         
 
     } catch (error) {
