@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 // ขอ Token เพื่อนำไปใส่ใน Controller Aruba
 app.post("/aruba/token", (req, res)=>{
     // ตรวจสอบ Username และ Password
-    if(req.body.username === "aruba" && req.body.password === "Aruba_Iot"){
+    if(req.body.username === "aruba" && req.body.password === "P@ssW0rd"){
         let data = {
             time: Date(),
             iot: "aruba-iot",
